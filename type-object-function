@@ -1,0 +1,43 @@
+type Movie = {
+  readonly title: string;
+  originalTitle?: string;
+  director: string;
+  releaseYear: number;
+  boxOffice: {
+    budget: number;
+    grossUS: number;
+    grossWorldwide: number;
+  };
+};
+
+const dune: Movie = {
+  title: "Dune",
+  originalTitle: "Dune Part One",
+  director: "D. V.",
+  releaseYear: 2021,
+  boxOffice: {
+    budget: 165_000_000,
+    grossUS: 108_327_830,
+    grossWorldwide: 400_671_789,
+  },
+};
+
+const cats: Movie = {
+  title: "Cats",
+  director: "T. H.",
+  releaseYear: 2019,
+  boxOffice: {
+    budget: 95_000_000,
+    grossUS: 27_166_770,
+    grossWorldwide: 73_833_348,
+  },
+};
+
+function getProfit(movieObj: Movie): number {
+    const {grossWorldwide, budget} = movieObj.boxOffice;
+    return grossWorldwide - budget;
+//   return movieObj.boxOffice.grossWorldwide - movieObj.boxOffice.budget;
+}
+
+const profit = getProfit(cats);
+console.log(profit);
