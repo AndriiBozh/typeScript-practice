@@ -1,0 +1,16 @@
+type Product = {
+  name: string;
+  price: number;
+};
+
+function getTotal(products: Product[]): number {
+  let sum = 0;
+  products.forEach((product) => (sum += product.price));
+  return sum;
+}
+
+const products: Product[] = [
+  { name: "pr 1", price: 12 },
+  { name: "pr 2", price: 10 },
+  { name: "pr 3", price: 11.21 },
+];
