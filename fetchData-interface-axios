@@ -1,0 +1,32 @@
+import axios from "axios";
+
+const url = "https://jsonplaceholder.typicode.com/posts/1";
+
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+axios
+  .get(url)
+  .then((response) => {
+    const post = response.data as Post;
+    const id = post.id;
+    const title = post.title;
+    const body = post.body;
+
+    consoleLogPost(id, title, body);
+  })
+  .catch((error) => {
+    console.log("error: ", error);
+  });
+
+const consoleLogPost = (id: number, title: string, body: string): void => {
+  console.log(`
+    Post with ID ${id}
+    is titled -- ${title} --
+    It says: ${body}
+    `);
+};
