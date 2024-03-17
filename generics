@@ -1,0 +1,35 @@
+class ArrayOfNumbers {
+    collection: number[]
+    constructor(collection: number[]) {
+        this.collection = collection
+    }
+    getNumber(index: number): number {
+        return this.collection[index];
+    }
+}
+
+class ArrayOfStrings {
+    collection: string[]
+    constructor(collection: string[]){
+        this.collection = collection
+    }
+    getString(index: number): string {
+        return this.collection[index];
+    }
+}
+
+------------------------------------- convert two classes above into generic class:
+
+class ArrayOfWhatever <T>{
+    collection: T[]
+    constructor(collection: T[]) {
+        this.collection = collection
+    }
+
+    getWhatever(index: number): T {
+        return this.collection[index]
+    }
+}
+
+const strArr = new ArrayOfWhatever<string>(["str1", "str2", "etc"]);
+const strItem = strArr.getWhatever(2);
