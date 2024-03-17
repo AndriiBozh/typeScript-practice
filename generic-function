@@ -1,0 +1,25 @@
+function printString(arr: string[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+function printNumber(arr: number[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+------------------------------- convert two functions above into one generic function:
+
+
+function printWhatever<T>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+printWhatever<string>(["a", "b", "c"]);
+// or, since TS knows that we passed an array of strings,
+// we can drop the <string> part:
+printWhatever(["a", "b", "c"]);
