@@ -1,0 +1,29 @@
+type Employee = {
+  id: number;
+  name: string;
+  department: string;
+};
+
+type Manager = {
+  id: number;
+  name: string;
+  employees: Employee[];
+};
+
+type Staff = Employee | Manager;
+
+function printStaffDetails(staff: Staff): void {
+  if ("employees" in staff) {
+    console.log(
+      `This person is a manager and they manage ${staff.employees.length} persons.`
+    );
+  } else {
+    console.log(
+      `This person is an employee and they belong to ${staff.department} department`
+    );
+  }
+}
+
+const alice: Employee = { id: 1, name: "Alice", department: "detective" };
+const steve: Employee = { id: 2, name: "Steve", department: "detective" };
+const bob: Manager = { id: 3, name: "Bob", employees: [alice, steve] };
