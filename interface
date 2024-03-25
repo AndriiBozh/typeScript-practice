@@ -1,0 +1,20 @@
+interface Computer {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  storage?: number;
+  upgradeRam: (newRam: number) => number;
+}
+
+const comp: Computer = {
+  id: 1,
+  brand: "New Brand",
+  ram: 100,
+  upgradeRam(newRam) {
+    return (this.ram = newRam);
+  },
+};
+
+console.log("initial ram: ", comp.ram);
+comp.upgradeRam(120);
+console.log("upgraded ram: ", comp.ram);
