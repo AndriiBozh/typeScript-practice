@@ -1,0 +1,36 @@
+interface Person {
+  name: string;
+}
+
+interface DogOwner extends Person {
+  dogName: string;
+}
+
+interface Manager extends Person {
+  managePeople: () => void;
+  delegateTasks: () => void;
+}
+
+function getEmployee(): Person | DogOwner | Manager {
+  const rand = Math.random();
+  if (rand < 0.33) {
+    const person: Person = { name: "person's name" };
+    return person;
+  } else if (rand < 0.66) {
+    const dogOwner: DogOwner = { name: "dogowner's name", dogName: "dog name" };
+    return dogOwner;
+  } else {
+    const manager: Manager = {
+      name: "manager's name",
+      managePeople(): void {
+        console.log("manager manages people");
+      },
+      delegateTasks(): void {
+        console.log("manager delegates tasks");
+      },
+    };
+    return manager;
+  }
+}
+const employee = getEmployee();
+console.log(employee);
