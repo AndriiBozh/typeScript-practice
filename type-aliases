@@ -1,0 +1,21 @@
+type Dog = { type: "dog"; name: string; bark: () => void };
+type Cat = { type: "cat"; name: string; meau: () => void };
+type Animal = Dog | Cat;
+
+function makeSound(animal: Animal) {
+  if (animal.type === "dog") {
+    animal.bark();
+  } else {
+    animal.meau();
+  }
+}
+
+const c: Cat = {
+  type: "cat",
+  name: "cat is me",
+  meau: function (): void {
+    console.log("meau");
+  },
+};
+
+makeSound(c);
