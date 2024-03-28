@@ -1,0 +1,41 @@
+type User = {
+  type: string;
+  name: string;
+  email?: string;
+};
+
+function Component({ type, name, email }: User) {
+  if (type === "basic") {
+    return (
+      <div className="alert-success">
+        <h2>User: {name}</h2>
+      </div>
+    );
+  }
+  if (type === "advanced") {
+    return (
+      <div className={!email ? "alert-danger" : "alert-success"}>
+        <h2>User: {name}</h2>
+        <h3>Email: {email}</h3>
+      </div>
+    );
+  }
+}
+
+export default Component;
+
+
+-----------------------------------------------------
+
+import Component from "./user";
+
+function App() {
+  return (
+    <main>
+      <Component type="basic" name="john" />
+      <Component type="advanced" name="sam" email="email" />
+    </main>
+  );
+}
+
+export default App;
