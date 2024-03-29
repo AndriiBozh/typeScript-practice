@@ -1,0 +1,48 @@
+import { createContext, useContext } from "react";
+
+const TestProviderContext = createContext<string | undefined>(undefined);
+
+export function TestProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <TestProviderContext.Provider value="hello-from-provider">
+      {children}
+    </TestProviderContext.Provider>
+  );
+}
+
+export const useTheme = () => {
+  const context = useContext(TestProviderContext);
+  if (context === undefined) {
+    throw new Error(
+      "the component, where 'useTheme' hook is used, should be wrapped in TestProviderContext: <TestProviderContext> <TheComponent/> </TestProviderContext>"
+    );
+  }
+  return context;
+};
+
+
+----------------------------------------------------------------
+
+
+import { useTheme, TestProvider } from "./context";
+
+function ParentComponent() {
+  // return <Component />; //  test for error
+  return (
+    <TestProvider>
+      <Component />
+    </TestProvider>
+  );
+}
+
+function Component() {
+  const context = useTheme();
+  console.log("context received by 'Component' inside 'index.tsx': ", context);
+  return (
+    <div>
+      <h2>Component</h2>
+    </div>
+  );
+}
+
+export default ParentComponent;
